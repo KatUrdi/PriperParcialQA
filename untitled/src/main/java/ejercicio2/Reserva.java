@@ -3,8 +3,8 @@ package ejercicio2;
 public class Reserva {
     Datos datos = new Datos();
 
-    public void setOtro(Datos otro){
-        this.datos = otro;
+    public void setDatos(Datos datos){
+        this.datos = datos;
     }
     public String resevaVuelo(String destino, int cantidad, int dia, int mes, int gestion){
         if(dia < 1 || mes < 1|| gestion < 0 || dia > 31 || mes > 12 || dia > 28 && mes==2 && !isLeapYear(gestion)){
@@ -56,5 +56,9 @@ public class Reserva {
 
         }
 
+        return datos.existenPasajes(destino, cantidad) ? "el dia "+Datos.getDay(dia,mes,gestion)+" "+dia+" "+month+" "+gestion+" existen "+cantidad+" pasajes para "+destino: "no existen suficientes pasajes para "+destino;
+    }
+    public boolean isLeapYear(int num){
+        return (num%4==0 && (num%100!=0||num%400==0));
     }
 }
